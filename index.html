@@ -82,6 +82,25 @@ nav{
 }
 .nav-cv:hover{transform:scale(1.04);opacity:.9}
 
+/* ── HERO PHOTO ── */
+.h-photo-wrap{
+  display:flex;align-items:center;gap:1.4rem;
+  margin-bottom:1.8rem;
+}
+.h-photo{
+  width:130px;height:130px;border-radius:50%;
+  border:2px solid var(--bdr2);
+  object-fit:cover;object-position:center;
+  background:var(--bg4);
+  flex-shrink:0;
+  box-shadow:0 0 0 4px rgba(224,82,82,.08),0 8px 32px rgba(0,0,0,.5);
+  transition:box-shadow .3s;
+}
+.h-photo:hover{box-shadow:0 0 0 4px rgba(224,82,82,.2),0 8px 40px rgba(0,0,0,.6)}
+.h-photo-meta{display:flex;flex-direction:column;gap:.3rem}
+.h-photo-name-sm{font-family:var(--mono);font-size:.62rem;color:var(--g2);letter-spacing:.12em}
+.h-photo-handle{font-family:var(--mono);font-size:.56rem;color:var(--g3);letter-spacing:.08em}
+
 /* ── HERO ── */
 .hero{
   min-height:100vh;display:flex;align-items:center;
@@ -414,6 +433,13 @@ footer{padding:1.6rem 2rem;background:var(--bg2);border-top:1px solid var(--bdr)
 <section class="hero" id="home">
   <div class="hero-wrap">
     <div class="hero-left">
+      <div class="h-photo-wrap">
+        <img src="Screenshot 2026-03-22 105102.png" alt="Vishwas Kamboj" class="h-photo">
+        <div class="h-photo-meta">
+          <span class="h-photo-name-sm">VISHWAS KAMBOJ</span>
+          <span class="h-photo-handle">@darkexploiter · HackerOne</span>
+        </div>
+      </div>
       <div class="h-tagline"><span class="h-tagline-dot"></span>Security Researcher &amp; Bug Bounty Hunter</div>
       <h1 class="h-name">Vishwas</h1>
       <p class="h-bio">
@@ -672,7 +698,7 @@ footer{padding:1.6rem 2rem;background:var(--bg2);border-top:1px solid var(--bdr)
     <span class="solid">WORK</span>
     <span class="out">TOGETHER</span>
   </div>
-  <a href="mailto:vishwaskamboj1@outlook.com" class="ct-email">vishwaskamboj1@outlook.com</a>
+  <a href="/cdn-cgi/l/email-protection#8bfde2f8e3fceaf8e0eae6e9e4e1bacbe4feffe7e4e4e0a5e8e4e6" class="ct-email"><span class="__cf_email__" data-cfemail="f5839c869d8294869e9498979a9fc4b59a8081999a9a9edb969a98">[email&#160;protected]</span></a>
   <div class="soc-row">
     <a href="https://github.com/vishux777" target="_blank" class="soc">GitHub</a>
     <a href="https://www.linkedin.com/in/vishwas-kamboj-aa5435290/" target="_blank" class="soc">LinkedIn</a>
@@ -689,6 +715,7 @@ footer{padding:1.6rem 2rem;background:var(--bg2);border-top:1px solid var(--bdr)
 </div>
 
 <script>
+document.addEventListener('DOMContentLoaded',function(){
 /* ── CURSOR ── */
 const cur=document.getElementById('cur'),outer=document.getElementById('cur-outer');
 let mx=0,my=0,ox=0,oy=0;
@@ -873,11 +900,15 @@ document.querySelectorAll('[data-count]').forEach(el=>counterObs.observe(el));
 
 /* ── NAV ACTIVE ── */
 const secs=document.querySelectorAll('section[id]');
-const links=document.querySelectorAll('.nav-link');
+const links=document.querySelector('a.nav-link');
 window.addEventListener('scroll',()=>{
-  let c='';secs.forEach(s=>{if(window.scrollY>=s.offsetTop-130)c=s.id;});
-  links.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+c));
-},{passive:true});
+  let cur='';
+  secs.forEach(s=>{if(window.scrollY>=s.offsetTop-120)cur=s.id;});
+  document.querySelectorAll('.nav-link').forEach(a=>{
+    a.classList.toggle('active',a.getAttribute('href')==='#'+cur);
+  });
+});
+}); // DOMContentLoaded
 </script>
 </body>
 </html>
